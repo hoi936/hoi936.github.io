@@ -1,0 +1,161 @@
+/* profile.css */
+
+:root {
+    --primary-pink: #FFC0CB; /* Nền body màu hồng pastel */
+    --card-background: #FFFFFF; /* Nền card màu trắng */
+    --text-color-dark: #333333; /* Màu chữ đậm trên nền card trắng */
+    --text-color-medium: #555555; /* Màu chữ vừa trên nền card trắng */
+    --icon-circle-background: #FF69B4; /* Nền vòng tròn icon mạng xã hội */
+    --icon-color-on-pink: #FFFFFF; /* Màu icon mạng xã hội (trắng) */
+    --pink-accent-hover: #E1306C; /* Màu hồng đậm hơn cho hover */
+}
+
+body {
+    background-color: var(--primary-pink); /* Áp dụng nền hồng cho body */
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    padding: 24px;
+    font-family: Poppins, sans-serif;
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+.card {
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 20px 20px 16px 16px;
+    background-color: var(--card-background); /* Nền card trắng */
+    cursor: pointer;
+    overflow: hidden;
+    max-width: clamp(620px, 70vw, 820px);
+    min-width: 260px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 10px 25px;
+}
+
+.background { /* Đây là cột chứa ảnh profile */
+    flex: 1 1 250px;
+    min-height: 280px; /* Đảm bảo cột ảnh có chiều cao tối thiểu */
+}
+
+.background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.content { /* Đây là cột chứa thông tin */
+    flex: 2 1 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: clamp(16px, 3vw, 24px);
+}
+
+.content > h2 { /* Tên "Hồ Thị Ái Nhân" */
+    font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+    font-weight: 600;
+    margin-bottom: clamp(0.5rem, 2vw, 0.8rem);
+    color: var(--text-color-dark);
+}
+
+#personal-info { /* Danh sách thông tin cá nhân */
+    list-style: none; /* Bỏ dấu chấm đầu dòng mặc định */
+    margin-bottom: clamp(16px, 3vw, 24px);
+}
+
+#personal-info li {
+    display: flex;
+    align-items: flex-start; /* Căn icon và text ở đầu dòng */
+    font-size: clamp(0.95rem, 3.6vw, 1.2rem);
+    font-weight: 400;
+    margin-bottom: clamp(10px, 1.8vw, 15px); /* Khoảng cách giữa các dòng thông tin */
+    line-height: 1.5;
+    color: var(--text-color-medium);
+}
+
+#personal-info li::before {
+    content: '🏫'; /* Icon trường học */
+    margin-right: 12px; /* Khoảng cách giữa icon và text */
+    font-size: 1.1em; /* Kích thước icon lớn hơn một chút */
+    flex-shrink: 0; /* Ngăn icon bị co lại */
+    line-height: inherit; /* Giúp icon căn tốt hơn với dòng text */
+}
+
+.social-icons { /* Danh sách icon mạng xã hội */
+    display: flex;
+    width: 100%;
+    justify-content: flex-end; /* Căn các icon về bên phải */
+    margin-top: auto; /* Đẩy icon xuống dưới cùng */
+    gap: clamp(0.6rem, 1.5vw, 1rem);
+}
+
+.social-icons li {
+    list-style: none;
+}
+
+.social-icons li a { /* Thẻ <a> bao quanh icon mạng xã hội */
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: clamp(38px, 5vw, 44px); /* Kích thước vùng tròn */
+    height: clamp(38px, 5vw, 44px);
+    border-radius: 50%;
+    background-color: var(--icon-circle-background); /* Nền hồng cho vòng tròn icon */
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.social-icons li a svg { /* Icon SVG mạng xã hội */
+    width: clamp(1rem, 2.5vw, 1.3rem); /* Kích thước SVG */
+    height: clamp(1rem, 2.5vw, 1.3rem);
+    stroke-width: 2px;
+    stroke: var(--icon-color-on-pink); /* Màu stroke icon (trắng) */
+    fill: none; /* Mặc định không fill */
+}
+
+/* CSS riêng cho icon Facebook và TikTok để fill màu trắng */
+.social-icons li a svg.facebook-icon,
+.social-icons li a svg.tiktok-icon {
+    fill: var(--icon-color-on-pink);
+    stroke: none;
+}
+
+.social-icons li a:hover {
+    transform: translateY(-3px) scale(1.05);
+    background-color: var(--pink-accent-hover); /* Đổi màu nền khi hover */
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 620px) {
+    .card {
+        flex-direction: column; /* Chuyển sang bố cục 1 cột */
+    }
+    .background { /* Cột ảnh */
+        flex-basis: 200px; /* Chiều cao cố định cho ảnh khi ở 1 cột */
+        min-height: 200px;
+    }
+    .content { /* Cột thông tin */
+        flex-basis: auto; /* Nội dung tự co giãn chiều cao */
+        text-align: center; /* Căn giữa nội dung khi ở 1 cột */
+    }
+    #personal-info {
+        text-align: left; /* Giữ căn trái cho danh sách thông tin cá nhân */
+    }
+    /* #personal-info li {
+        justify-content: flex-start; // Không cần nếu text-align: left của #personal-info đã đủ
+    } */
+    .social-icons {
+        justify-content: center; /* Căn giữa các icon mạng xã hội */
+    }
+}
